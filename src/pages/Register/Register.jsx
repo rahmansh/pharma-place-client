@@ -1,13 +1,35 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
+import useAuth from "../../hooks/useAuth";
+import { updateProfile } from "firebase/auth";
+import auth from "../../firebase/firebase.config";
 
 const Register = () => {
+    const { createUser } = useAuth()
     const { register, handleSubmit, watch } = useForm();
 
     const onSubmit = data => {
-        const { email, password, url } = data;
-        console.log(email, password, url)
+        const { email, password, url, username } = data;
+        // console.log(email, password, url)
+        createUser(email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                console.log(user)
+                updateProfile(auth.currentUser, {
+                    displayName: username,
+                    photoURL: url
+                }).then(() => {
+                    console.log("Profile Updated!")
+                }).catch((error) => {
+                    console.log(error)
+                    console.log("An Error Occured While Updating")
+                })
+            })
+            .catch((error) => {
+                console.log("Error Code: ", error.code)
+                console.log("Error Message: ", error.message);
+            })
     }
 
     // console.log(watch("email"));
@@ -19,6 +41,13 @@ const Register = () => {
             <div className="hero bg-base-200 min-h-screen">
                 <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
                     <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Username</span>
+                            </label>
+                            {/* <input type="email" placeholder="email" className="input input-bordered" required /> */}
+                            <input type="text" placeholder="Username" className="input input-bordered" {...register("username")} />
+                        </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>

@@ -1,13 +1,20 @@
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import AuthContext from "./AuthContext";
 import PropTypes from 'prop-types';
+import auth from "../firebase/firebase.config";
 
 const AuthProvider = ({ children }) => {
     const isLoggedIn = false;
 
-    // const user = "Shihab"
+
+    const createUser = (email, password) => {
+        return createUserWithEmailAndPassword(auth, email, password)
+    }
+
 
     const authInfo = {
-        isLoggedIn
+        isLoggedIn,
+        createUser
     }
 
     return (
