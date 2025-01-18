@@ -2,13 +2,26 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Navbar from "../../components/Navbar/Navbar";
 import { FaGoogle } from "react-icons/fa";
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
     const { register, handleSubmit, watch } = useForm();
+    const { googleSignIn } = useAuth();
 
     const onSubmit = data => {
         const { email, password } = data;
         console.log(email, password)
+    }
+
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+            .then((result) => {
+                const user = result.user;
+                console.log(user);
+            }).catch((error) => {
+                console.log("Error Code: ", error.code);
+                console.log("Error Message: ", error.message);
+            })
     }
 
     // console.log(watch("email"));
@@ -42,7 +55,7 @@ const Login = () => {
                     </form>
                     <div className="text-center">
                         <div className="avatar pb-4">
-                            <button className="p-4 bg-primary text-white rounded-md">
+                            <button onClick={handleGoogleSignIn} className="p-4 bg-primary text-white rounded-md">
                                 <FaGoogle />
                             </button>
                         </div>

@@ -3,8 +3,17 @@ import navImg from '../../assets/images/pharma-place.webp'
 import useAuth from '../../hooks/useAuth';
 
 const Navbar = () => {
+    const { user } = useAuth();
+    const { isLoggedIn, logOut } = useAuth();
 
-    const { isLoggedIn } = useAuth();
+    const handleLogout = () => {
+        logOut().then(() => {
+            console.log("Sign-out successful.")
+        }).catch((error) => {
+            console.log(error)
+            console.log("An error happened while loggin Out user")
+        })
+    }
 
 
     const links = <>
@@ -51,7 +60,7 @@ const Navbar = () => {
                     </div>
                     <div className="navbar-end">
                         {
-                            isLoggedIn ? <>
+                            user ? <>
                                 <div className="dropdown dropdown-end">
                                     <div tabIndex={0} role="button" className="m-1">
                                         <div className="avatar">
@@ -63,7 +72,7 @@ const Navbar = () => {
                                     <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
                                         <li><a>Update Profile</a></li>
                                         <li><a>Dashboard</a></li>
-                                        <li><a>Logout</a></li>
+                                        <li><button onClick={handleLogout}>Logout</button></li>
                                     </ul>
                                 </div>
                             </> : <>
