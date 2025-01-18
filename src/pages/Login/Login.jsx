@@ -6,11 +6,20 @@ import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
     const { register, handleSubmit, watch } = useForm();
-    const { googleSignIn } = useAuth();
+    const { signInUser, googleSignIn } = useAuth();
 
     const onSubmit = data => {
         const { email, password } = data;
-        console.log(email, password)
+        // console.log(email, password)
+        signInUser(email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                console.log(user);
+            })
+            .catch((error) => {
+                console.log("Error Code: ", error.code);
+                console.log("Error Message: ", error.message);
+            })
     }
 
     const handleGoogleSignIn = () => {
