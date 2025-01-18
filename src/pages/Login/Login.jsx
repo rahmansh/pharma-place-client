@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import Navbar from "../../components/Navbar/Navbar";
 import { FaGoogle } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
+import { Helmet } from 'react-helmet-async';
+
 
 const Login = () => {
     const { register, handleSubmit, watch } = useForm();
@@ -39,6 +41,9 @@ const Login = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>PharmaPlace | Login</title>
+            </Helmet>
             <Navbar />
             <div className="hero bg-base-200 min-h-screen">
                 <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
