@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import Navbar from "../../components/Navbar/Navbar";
+import { FaGoogle } from "react-icons/fa";
 
 const Login = () => {
     const { register, handleSubmit, watch } = useForm();
@@ -9,12 +11,13 @@ const Login = () => {
         console.log(email, password)
     }
 
-    console.log(watch("email"));
-    console.log(watch("password"));
+    // console.log(watch("email"));
+    // console.log(watch("password"));
 
 
     return (
         <div>
+            <Navbar />
             <div className="hero bg-base-200 min-h-screen">
                 <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
                     <form onSubmit={handleSubmit(onSubmit)} className="card-body">
@@ -37,6 +40,13 @@ const Login = () => {
                             <p className="mt-4">New User? <Link to={"/register"} className="text-orange-500 font-bold">Register</Link></p>
                         </div>
                     </form>
+                    <div className="text-center">
+                        <div className="avatar pb-4">
+                            <button className="p-4 bg-primary text-white rounded-md">
+                                <FaGoogle />
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

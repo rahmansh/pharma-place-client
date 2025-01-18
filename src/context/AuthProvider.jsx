@@ -2,11 +2,12 @@ import AuthContext from "./AuthContext";
 import PropTypes from 'prop-types';
 
 const AuthProvider = ({ children }) => {
+    const isLoggedIn = false;
 
-    const user = "Shihab"
+    // const user = "Shihab"
 
     const authInfo = {
-        user
+        isLoggedIn
     }
 
     return (

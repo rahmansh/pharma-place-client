@@ -1,6 +1,12 @@
+import { Link } from 'react-router-dom';
 import navImg from '../../assets/images/pharma-place.webp'
+import useAuth from '../../hooks/useAuth';
 
 const Navbar = () => {
+
+    const { isLoggedIn } = useAuth();
+
+
     const links = <>
         <li><a>Home</a></li>
         <li><a>Shop</a></li>
@@ -44,7 +50,26 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <div className="navbar-end">
-                        <a className="btn">Button</a>
+                        {
+                            isLoggedIn ? <>
+                                <div className="dropdown dropdown-end">
+                                    <div tabIndex={0} role="button" className="m-1">
+                                        <div className="avatar">
+                                            <div className="ring-primary ring-offset-base-100 w-12 rounded-full ring ring-offset-2">
+                                                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+                                        <li><a>Update Profile</a></li>
+                                        <li><a>Dashboard</a></li>
+                                        <li><a>Logout</a></li>
+                                    </ul>
+                                </div>
+                            </> : <>
+                                <Link to={"/login"}><button className='btn btn-primary'>Login</button></Link>
+                            </>
+                        }
                     </div>
                 </div>
             </div>

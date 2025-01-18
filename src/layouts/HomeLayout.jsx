@@ -3,8 +3,8 @@ import Navbar from "../components/Navbar/Navbar";
 import useAuth from "../hooks/useAuth";
 
 const HomeLayout = () => {
-    const { user } = useAuth();
-    console.log(user)
+    const { isLoggedIn } = useAuth();
+    console.log(isLoggedIn)
     return (
         <div>
             <Navbar />
