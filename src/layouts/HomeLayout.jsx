@@ -1,3 +1,5 @@
+import { Outlet } from "react-router-dom";
+import Navbar from "../components/Navbar/Navbar";
 import useAuth from "../hooks/useAuth";
 
 const HomeLayout = () => {
@@ -5,7 +7,10 @@ const HomeLayout = () => {
     console.log(user)
     return (
         <div>
-            <h1>Hello</h1>
+            <Navbar />
+            <div className="max-w-screen-2xl mx-auto">
+                <Outlet />
+            </div>
         </div>
     );
 };
