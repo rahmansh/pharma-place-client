@@ -19,7 +19,7 @@ const Navbar = () => {
     const links = <>
         <li><a>Home</a></li>
         <li><a>Shop</a></li>
-        <li><a>Join US</a></li>
+        {!user && <li><a>Join US</a></li>}
     </>
 
     return (
