@@ -37,6 +37,7 @@ const AuthProvider = ({ children }) => {
         googleSignIn,
         user,
         loading,
+        setLoading,
         logOut,
         signInUser
     }
