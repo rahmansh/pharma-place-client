@@ -19,7 +19,6 @@ const CategoryDetails = () => {
 
     return (
         <div>
-            <h1>Category Details: {details}</h1>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
