@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Category = ({ category }) => {
     const { _id, categoryImage, categoryName, medicines } = category;
     let availableQuantatity = 0;
@@ -16,7 +18,7 @@ const Category = ({ category }) => {
                     <h2 className="card-title">{categoryName}</h2>
                     <p>Available Quantity: {availableQuantatity}</p>
                     <div className="card-actions justify-end">
-                        <button className="btn btn-primary">Details</button>
+                        <Link to={`/category/${_id}`}><button className="btn btn-primary">Details</button></Link>
                     </div>
                 </div>
             </div>

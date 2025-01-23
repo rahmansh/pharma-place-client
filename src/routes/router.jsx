@@ -5,6 +5,7 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import HomeLayout from "../layouts/HomeLayout";
 import Home from "../pages/Home/Home/Home";
+import CategoryDetails from "../pages/Home/CategoryDetails/CategoryDetails";
 
 const router = createBrowserRouter([
     {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Home />
+            },
+            {
+                path: "/category/:details",
+                element: <CategoryDetails />
             }
         ]
     },
