@@ -8,7 +8,7 @@ import { Helmet } from "react-helmet-async";
 
 const Register = () => {
     const { createUser } = useAuth()
-    const { register, handleSubmit, watch } = useForm();
+    const { register, handleSubmit } = useForm();
 
     const onSubmit = data => {
         const { email, password, url, username } = data;

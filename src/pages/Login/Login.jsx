@@ -7,7 +7,7 @@ import { Helmet } from 'react-helmet-async';
 
 
 const Login = () => {
-    const { register, handleSubmit, watch } = useForm();
+    const { register, handleSubmit } = useForm();
     const { signInUser, googleSignIn } = useAuth();
 
     const onSubmit = data => {
