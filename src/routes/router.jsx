@@ -6,6 +6,7 @@ import Register from "../pages/Register/Register";
 import HomeLayout from "../layouts/HomeLayout";
 import Home from "../pages/Home/Home/Home";
 import CategoryDetails from "../pages/Home/CategoryDetails/CategoryDetails";
+import Cart from "../pages/Cart/Cart";
 
 const router = createBrowserRouter([
     {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
             {
                 path: "/category/:details",
                 element: <CategoryDetails />
+            },
+            {
+                path: "/cart",
+                element: <Cart />
             }
         ]
     },
