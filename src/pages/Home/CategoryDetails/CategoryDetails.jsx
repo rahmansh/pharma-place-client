@@ -1,15 +1,20 @@
 import { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { IoInformationOutline } from "react-icons/io5";
+import useAuth from "../../../hooks/useAuth";
 
 const CategoryDetails = () => {
+    const { user } = useAuth();
     const [category, setCategory] = useState([]);
     const [selectedMedicine, setSelectedMedicine] = useState(null);
     const { details } = useParams();
     const modalRef = useRef(null);
     const { medicines } = category;
+    const location = useLocation()
+    const navigate = useNavigate();
 
+    const axiosSecure = useAxiosSecure();
 
     const handleDetails = (medicine) => {
         setSelectedMedicine(medicine);
@@ -18,9 +23,28 @@ const CategoryDetails = () => {
         }
     }
 
+    const handleAddToCart = (medicine) => {
+        if (user && user.email) {
+            const cartItem = {
+                categoryId: details,
+                email: user.email,
+                name: medicine.name,
+                genericName: medicine.genericName,
+                company: medicine.company,
+                price: medicine.price,
+                quantity: medicine.quantity
+            }
+            axiosSecure.post("/carts", cartItem)
+                .then((response) => {
+                    console.log(response)
+                })
+        } else {
+            navigate("/login", { state: { from: location } })
+        }
+    }
 
 
-    const axiosSecure = useAxiosSecure();
+
 
     useEffect(() => {
         axiosSecure.get(`/category/${details}`)
@@ -53,7 +77,7 @@ const CategoryDetails = () => {
                                 <td>{medicine.name}</td>
                                 <td>{medicine.company}</td>
                                 <td>{medicine.price}</td>
-                                <td><button className="btn btn-xs">Add</button></td>
+                                <td><button className="btn btn-xs" onClick={() => handleAddToCart(medicine)}>Add To Cart</button></td>
                                 <td><button className="text-2xl p-2 w-12 h-12 font-bold" onClick={() => handleDetails(medicine)}>
                                     <IoInformationOutline />
                                 </button></td>
