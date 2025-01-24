@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import navImg from '../../assets/images/pharma-place.webp'
 import useAuth from '../../hooks/useAuth';
+import { IoCartOutline } from "react-icons/io5";
 
 const Navbar = () => {
     const { user } = useAuth();
@@ -20,6 +21,8 @@ const Navbar = () => {
         <li><a>Home</a></li>
         <li><a>Shop</a></li>
         {!user && <li><a>Join US</a></li>}
+        <li><button><IoCartOutline className='text-primary text-2xl' /></button></li>
+
     </>
 
     return (
