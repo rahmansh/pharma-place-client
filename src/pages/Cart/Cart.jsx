@@ -1,8 +1,20 @@
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useCart from "../../hooks/useCart";
 
 const Cart = () => {
     const [cart, refetch] = useCart();
-    console.log(cart)
+    console.log(cart);
+
+    const axiosSecure = useAxiosSecure();
+
+    const handleDelete = id => {
+        axiosSecure.delete(`/carts/${id}`)
+            .then(res => {
+                console.log(res)
+                refetch();
+            })
+    }
+
 
     return (
         <div>
@@ -28,7 +40,7 @@ const Cart = () => {
                                 <td>{item.company}</td>
                                 <td>${item.price}</td>
                                 <td>{item.orderQuantity}</td>
-                                <td><button className="btn btn-xs">Delete</button></td>
+                                <td><button onClick={() => handleDelete(item._id)} className="btn btn-xs">Delete</button></td>
                             </tr>)
                         }
 
