@@ -32,12 +32,30 @@ const CategoryDetails = () => {
                 genericName: medicine.genericName,
                 company: medicine.company,
                 price: medicine.price,
-                quantity: medicine.quantity
+                availableQuantity: medicine.quantity,
+                orderQuantity: 1,
             }
-            axiosSecure.post("/carts", cartItem)
+            axiosSecure.get(`/carts`, {
+                params: {
+                    email: user.email,
+                    medicineName: medicine.name,
+                },
+            })
                 .then((response) => {
-                    console.log(response)
+                    if (response.data.length > 0) {
+                        const existingItem = response.data[0];
+                        axiosSecure.patch(`/carts/${existingItem._id}`, {
+                            orderQuantity: existingItem.orderQuantity + 1,
+                        })
+                            .then((res) => console.log("Order quantity updated: ", res.data))
+                            .catch((err) => console.log("Error updating quantity: ", err));
+                    } else {
+                        axiosSecure.post("/carts", cartItem)
+                            .then((res) => console.log("Item added to cart: ", res.data))
+                            .catch((err) => console.log("Error adding to cart: ", err))
+                    }
                 })
+                .catch((err) => console.log("Error checking cart: ", err))
         } else {
             navigate("/login", { state: { from: location } })
         }
