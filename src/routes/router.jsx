@@ -7,6 +7,7 @@ import HomeLayout from "../layouts/HomeLayout";
 import Home from "../pages/Home/Home/Home";
 import Cart from "../pages/Cart/Cart";
 import Shop from "../pages/Shop/Shop";
+import MedicineCategory from "../pages/MedicineCategory/MedicineCategory";
 
 const router = createBrowserRouter([
     {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
             {
                 path: "/shop",
                 element: <Shop />
+            },
+            {
+                path: "/medicine/:category",
+                element: <MedicineCategory />
             }
         ]
     },
