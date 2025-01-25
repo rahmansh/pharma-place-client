@@ -7,6 +7,7 @@ import HomeLayout from "../layouts/HomeLayout";
 import Home from "../pages/Home/Home/Home";
 import CategoryDetails from "../pages/Home/CategoryDetails/CategoryDetails";
 import Cart from "../pages/Cart/Cart";
+import Shop from "../pages/Shop/Shop";
 
 const router = createBrowserRouter([
     {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
             {
                 path: "/cart",
                 element: <Cart />
+            },
+            {
+                path: "/shop",
+                element: <Shop />
             }
         ]
     },
