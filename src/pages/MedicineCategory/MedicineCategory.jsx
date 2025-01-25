@@ -7,6 +7,7 @@ const MedicineCategory = () => {
     const { user } = useAuth();
     const { category } = useParams();
     const [medicines, setMedicines] = useState([]);
+    const [selectedMedicine, setSelectedMedicine] = useState(null);
     const axiosSecure = useAxiosSecure();
 
 
@@ -14,7 +15,7 @@ const MedicineCategory = () => {
     const navigate = useNavigate();
     const location = useLocation()
 
-    const selectedCategory = medicines.filter((item) => item.category == category)
+    const selectedCategory = medicines?.filter((item) => item.category == category)
 
     const handleAddToCart = (item) => {
         if (user && user.email) {
@@ -37,6 +38,13 @@ const MedicineCategory = () => {
                     console.log(error)
                 })
         }
+    }
+
+
+    const handleInfo = (item) => {
+        setSelectedMedicine(item);
+        document.getElementById('my_modal_2').showModal();
+        console.log(selectedMedicine)
     }
 
 
@@ -63,19 +71,45 @@ const MedicineCategory = () => {
                     <tbody>
                         {/* row 1 */}
                         {
-                            selectedCategory.map((item, index) => <tr key={item._id}>
+                            selectedCategory?.map((item, index) => <tr key={item._id}>
                                 <th>{index + 1}</th>
                                 <th>{item.name}</th>
                                 <td>{item.company}</td>
                                 <td>${item.price}</td>
                                 <td><button className="btn btn-xs" onClick={() => handleAddToCart(item)}>Add To Cart</button></td>
-                                <td><button className="btn btn-xs">!</button></td>
+                                <td><button onClick={() => handleInfo(item)} className="btn btn-xs">!</button></td>
                             </tr>)
                         }
 
                     </tbody>
                 </table>
             </div>
+
+            <dialog id="my_modal_2" className="modal">
+                {
+                    selectedMedicine && (
+                        <div className="modal-box">
+                            <div className="card card-compact bg-base-100 shadow-xl">
+                                <figure>
+                                    <img
+                                        src={selectedMedicine.image}
+                                        alt={selectedMedicine.genericName} />
+                                </figure>
+                                <div className="card-body">
+                                    <h2 className="card-title">{selectedMedicine.name}</h2>
+                                    <p>Generic Name: {selectedMedicine.genericName}</p>
+                                    <p>Company Name: {selectedMedicine.company}</p>
+                                    <p>Price: ${selectedMedicine.price}</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    )
+                }
+                <form method="dialog" className="modal-backdrop">
+                    <button>close</button>
+                </form>
+            </dialog>
         </div>
     );
 };
