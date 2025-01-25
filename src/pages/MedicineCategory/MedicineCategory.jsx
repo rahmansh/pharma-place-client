@@ -1,15 +1,43 @@
-import { useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useEffect, useState } from "react";
+import useAuth from "../../hooks/useAuth";
 
 const MedicineCategory = () => {
+    const { user } = useAuth();
     const { category } = useParams();
     const [medicines, setMedicines] = useState([]);
     const axiosSecure = useAxiosSecure();
 
+
+    // routing
+    const navigate = useNavigate();
+    const location = useLocation()
+
     const selectedCategory = medicines.filter((item) => item.category == category)
 
-    console.log(selectedCategory)
+    const handleAddToCart = (item) => {
+        if (user && user.email) {
+            const cartItem = {
+                medicineId: item._id,
+                genericName: item.genericName,
+                company: item.company,
+                category: item.category,
+                email: user.email,
+                image: item.image,
+                name: item.name,
+                price: item.price,
+                quantity: item.quantity
+            }
+            axiosSecure.post("/carts", cartItem)
+                .then((response) => {
+                    console.log(response)
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        }
+    }
 
 
     useEffect(() => {
@@ -40,7 +68,7 @@ const MedicineCategory = () => {
                                 <th>{item.name}</th>
                                 <td>{item.company}</td>
                                 <td>${item.price}</td>
-                                <td><button className="btn btn-xs">Add To Cart</button></td>
+                                <td><button className="btn btn-xs" onClick={() => handleAddToCart(item)}>Add To Cart</button></td>
                                 <td><button className="btn btn-xs">!</button></td>
                             </tr>)
                         }
