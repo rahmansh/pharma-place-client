@@ -1,0 +1,164 @@
+[
+    {
+        "name": "Paracetamol",
+        "genericName": "Acetaminophen",
+        "company": "XYZ Pharma",
+        "price": 5.0,
+        "quantity": 100,
+        "image": "https://i.ibb.co/NTK139Q/1-paracetamol.jpg",
+        "category": "Tablets"
+    },
+    {
+        "name": "Ibuprofen",
+        "genericName": "Ibuprofen",
+        "company": "ABC Pharma",
+        "price": 8.0,
+        "quantity": 200,
+        "image": "https://i.ibb.co/ZHz3MtQ/2-ibuprofen.jpg",
+        "category": "Tablets"
+    },
+    {
+        "name": "Aspirin",
+        "genericName": "Acetylsalicylic Acid",
+        "company": "123 Pharma",
+        "price": 6.5,
+        "quantity": 150,
+        "image": "https://i.ibb.co/JQ0k4bD/3-aspirin.jpg",
+        "category": "Tablets"
+    },
+    {
+        "name": "Cough Syrup",
+        "genericName": "Dextromethorphan",
+        "company": "HealthCo",
+        "price": 10.0,
+        "quantity": 50,
+        "image": "https://i.ibb.co/4W4rPSk/cough-syrup.jpg",
+        "category": "Syrups"
+    },
+    {
+        "name": "Iron Syrup",
+        "genericName": "Ferrous Sulfate",
+        "company": "Wellness Pharma",
+        "price": 15.0,
+        "quantity": 30,
+        "image": "https://i.ibb.co/TMNbXNW/iron-syrup.jpg",
+        "category": "Syrups"
+    },
+    {
+        "name": "Vitamin Syrup",
+        "genericName": "Multivitamins",
+        "company": "NutriPharma",
+        "price": 12.0,
+        "quantity": 40,
+        "image": "https://i.ibb.co/0tKnPRV/vitamin-syrup.jpg",
+        "category": "Syrups"
+    },
+    {
+        "name": "Vitamin D",
+        "genericName": "Cholecalciferol",
+        "company": "SunPharma",
+        "price": 7.5,
+        "quantity": 120,
+        "image": "https://i.ibb.co/Xy8HCd8/vitamin-d.jpg",
+        "category": "Capsules"
+    },
+    {
+        "name": "Fish Oil",
+        "genericName": "Omega-3",
+        "company": "SeaHealth",
+        "price": 12.0,
+        "quantity": 100,
+        "image": "https://i.ibb.co/wNtBj2s/fish-oil.jpg",
+        "category": "Capsules"
+    },
+    {
+        "name": "Probiotic",
+        "genericName": "Lactobacillus",
+        "company": "GutWell",
+        "price": 10.5,
+        "quantity": 80,
+        "image": "https://i.ibb.co/B3w8pwB/probiotic.jpg",
+        "category": "Capsules"
+    },
+    {
+        "name": "Insulin",
+        "genericName": "Insulin",
+        "company": "Diabetix",
+        "price": 25.0,
+        "quantity": 60,
+        "image": "https://i.ibb.co/mNjrS1p/insulin.jpg",
+        "category": "Injections"
+    },
+    {
+        "name": "Vitamin B12 Injection",
+        "genericName": "Cyanocobalamin",
+        "company": "HealthInject",
+        "price": 20.0,
+        "quantity": 80,
+        "image": "https://i.ibb.co/0Bx40TW/vitamin-b12.jpg",
+        "category": "Injections"
+    },
+    {
+        "name": "Pain Reliever Injection",
+        "genericName": "Ketorolac",
+        "company": "ReliefPharma",
+        "price": 18.5,
+        "quantity": 70,
+        "image": "https://i.ibb.co/YyZC42F/pain-reliever-injection.jpg",
+        "category": "Injections"
+    },
+    {
+        "name": "Antibiotic Ointment",
+        "genericName": "Neosporin",
+        "company": "SkinCare Pharma",
+        "price": 7.0,
+        "quantity": 120,
+        "image": "https://i.ibb.co/b3fwgrL/antibiotic-ointment.jpg",
+        "category": "Ointments"
+    },
+    {
+        "name": "Pain Relief Ointment",
+        "genericName": "Diclofenac Gel",
+        "company": "ReliefPharma",
+        "price": 6.5,
+        "quantity": 80,
+        "image": "https://i.ibb.co/tqvNt3P/pain-relief-ointment.jpg",
+        "category": "Ointments"
+    },
+    {
+        "name": "Antifungal Cream",
+        "genericName": "Clotrimazole",
+        "company": "DermCare",
+        "price": 8.0,
+        "quantity": 100,
+        "image": "https://i.ibb.co/hHJ479T/antifungal-cream.jpg",
+        "category": "Ointments"
+    },
+    {
+        "name": "Thermometer",
+        "genericName": "Digital Thermometer",
+        "company": "MedTools",
+        "price": 15.0,
+        "quantity": 100,
+        "image": "https://i.ibb.co/Cm6Q9Cp/thermometer.jpg",
+        "category": "Others"
+    },
+    {
+        "name": "Bandages",
+        "genericName": "Adhesive Bandages",
+        "company": "FirstAid Co.",
+        "price": 8.0,
+        "quantity": 150,
+        "image": "https://i.ibb.co/C7MZgsn/bandages.jpg",
+        "category": "Others"
+    },
+    {
+        "name": "Oximeter",
+        "genericName": "Pulse Oximeter",
+        "company": "HealthMonitor",
+        "price": 25.0,
+        "quantity": 60,
+        "image": "https://i.ibb.co/PtRSttH/oximeter.jpg",
+        "category": "Others"
+    }
+]
