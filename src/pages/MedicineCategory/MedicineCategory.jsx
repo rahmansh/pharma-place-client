@@ -2,6 +2,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
+import axios from "axios";
 
 const MedicineCategory = () => {
     const { user } = useAuth();
@@ -17,7 +18,7 @@ const MedicineCategory = () => {
 
     const selectedCategory = medicines?.filter((item) => item.category == category)
 
-    const handleAddToCart = (item) => {
+    const handleAddToCart = async (item) => {
         if (user && user.email) {
             const cartItem = {
                 medicineId: item._id,
@@ -28,15 +29,31 @@ const MedicineCategory = () => {
                 image: item.image,
                 name: item.name,
                 price: item.price,
-                quantity: item.quantity
+                quantity: item.quantity,
+                orderQuantity: 1
             }
-            axiosSecure.post("/carts", cartItem)
-                .then((response) => {
-                    console.log(response)
+            axiosSecure.get(`/carts?email=${user.email}&medicineName=${item.name}`)
+                .then(res => {
+                    const existingItem = res.data[0];
+                    if (res.data.length > 0) {
+                        axiosSecure.patch(`/carts/${existingItem._id}`, {
+                            orderQuantity: existingItem.orderQuantity + 1,
+                        })
+                            .then((res) => console.log("Quantity updated: ", res.data))
+                            .catch((err) => console.error("Error updating quantity: ", err))
+                    } else {
+                        axiosSecure.post("/carts", cartItem)
+                            .then((response) => {
+                                console.log(response)
+                            })
+                            .catch((error) => {
+                                console.log(error)
+                            })
+                    }
                 })
-                .catch((error) => {
-                    console.log(error)
-                })
+                .catch((err) => console.error("Error fetching cart items: ", err))
+
+
         }
     }
 

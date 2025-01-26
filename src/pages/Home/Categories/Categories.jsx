@@ -5,7 +5,6 @@ import Category from "../Category/Category";
 const Categories = () => {
     const [categories, setCategories] = useState([]);
     const axiosSecure = useAxiosSecure();
-    // console.log(categories)
 
     useEffect(() => {
         axiosSecure.get('/categories')
