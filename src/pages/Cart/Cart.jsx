@@ -1,18 +1,57 @@
+import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useCart from "../../hooks/useCart";
 
 const Cart = () => {
     const [cart, refetch] = useCart();
-    console.log(cart);
+    const { user } = useAuth();
+    // console.log(cart);
 
     const axiosSecure = useAxiosSecure();
 
     const handleDelete = id => {
         axiosSecure.delete(`/carts/${id}`)
             .then(res => {
-                console.log(res)
+                // console.log(res)
                 refetch();
             })
+    }
+
+    const handleIncrease = (item) => {
+        console.log(item)
+        axiosSecure.get(`/carts?email=${user.email}&medicineName=${item.name}`)
+            .then(res => {
+                const existingItem = res.data[0];
+                if (res.data.length > 0) {
+                    axiosSecure.patch(`/carts/${existingItem._id}`, {
+                        orderQuantity: existingItem.orderQuantity + 1,
+                    })
+                        .then((res) => {
+                            console.log("Quantity updated: ", res.data)
+                            refetch();
+                        })
+                        .catch((err) => console.error("Error updating quantity: ", err))
+                }
+            })
+            .catch((err) => console.error("Error fetching cart items: ", err))
+    }
+    const handleDecrease = (item) => {
+        console.log(item)
+        axiosSecure.get(`/carts?email=${user.email}&medicineName=${item.name}`)
+            .then(res => {
+                const existingItem = res.data[0];
+                if (res.data.length > 0) {
+                    axiosSecure.patch(`/carts/${existingItem._id}`, {
+                        orderQuantity: existingItem.orderQuantity - 1,
+                    })
+                        .then((res) => {
+                            console.log("Quantity updated: ", res.data)
+                            refetch();
+                        })
+                        .catch((err) => console.error("Error updating quantity: ", err))
+                }
+            })
+            .catch((err) => console.error("Error fetching cart items: ", err))
     }
 
 
@@ -39,7 +78,13 @@ const Cart = () => {
                                 <td>{item.name}</td>
                                 <td>{item.company}</td>
                                 <td>${item.price}</td>
-                                <td>{item.orderQuantity}</td>
+                                <td>
+                                    <button onClick={() => handleIncrease(item)} className="btn">+</button>
+                                    <span className="px-3">{item.orderQuantity}</span>
+                                    <button
+                                        onClick={() => handleDecrease(item)}
+                                        className="btn">-</button>
+                                </td>
                                 <td><button onClick={() => handleDelete(item._id)} className="btn btn-xs">Delete</button></td>
                             </tr>)
                         }
