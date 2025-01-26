@@ -17,6 +17,24 @@ const Cart = () => {
             })
     }
 
+    const handleClearCart = () => {
+        if (user && user.email) {
+            axiosSecure.delete(`/carts`, {
+                params: {
+                    email: user.email
+                }
+            })
+                .then((response) => {
+                    console.log("Cart cleared: ", response.data)
+                    refetch();
+                })
+                .catch((err) => {
+                    console.error("Error clearing cart: ", err);
+                })
+        }
+
+    }
+
     const handleIncrease = (item) => {
         console.log(item)
         axiosSecure.get(`/carts?email=${user.email}&medicineName=${item.name}`)
@@ -92,6 +110,7 @@ const Cart = () => {
                     </tbody>
                 </table>
             </div>
+            <button className="btn btn-error mt-4" onClick={handleClearCart}>Clear Cart</button>
         </div>
     );
 };
