@@ -6,6 +6,7 @@ import { updateProfile } from "firebase/auth";
 import auth from "../../firebase/firebase.config";
 import { Helmet } from "react-helmet-async";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 const Register = () => {
     const { createUser } = useAuth()
@@ -92,6 +93,7 @@ const Register = () => {
                             <p className="mt-4">Already User? <Link to={"/login"} className="text-orange-500 font-bold">Login</Link></p>
                         </div>
                     </form>
+                    <SocialLogin />
                 </div>
             </div>
         </div>

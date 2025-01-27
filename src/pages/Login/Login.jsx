@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Navbar from "../../components/Navbar/Navbar";
-import { FaGoogle } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 import { Helmet } from 'react-helmet-async';
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 
 const Login = () => {
     const { register, handleSubmit } = useForm();
-    const { signInUser, googleSignIn } = useAuth();
+    const { signInUser } = useAuth();
 
     const onSubmit = data => {
         const { email, password } = data;
@@ -24,16 +24,7 @@ const Login = () => {
             })
     }
 
-    const handleGoogleSignIn = () => {
-        googleSignIn()
-            .then((result) => {
-                const user = result.user;
-                console.log(user);
-            }).catch((error) => {
-                console.log("Error Code: ", error.code);
-                console.log("Error Message: ", error.message);
-            })
-    }
+
 
     // console.log(watch("email"));
     // console.log(watch("password"));
@@ -67,13 +58,7 @@ const Login = () => {
                             <p className="mt-4">New User? <Link to={"/register"} className="text-orange-500 font-bold">Register</Link></p>
                         </div>
                     </form>
-                    <div className="text-center">
-                        <div className="avatar pb-4">
-                            <button onClick={handleGoogleSignIn} className="p-4 bg-primary text-white rounded-md">
-                                <FaGoogle />
-                            </button>
-                        </div>
-                    </div>
+                    <SocialLogin />
                 </div>
             </div>
         </div>
