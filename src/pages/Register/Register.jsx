@@ -5,10 +5,13 @@ import useAuth from "../../hooks/useAuth";
 import { updateProfile } from "firebase/auth";
 import auth from "../../firebase/firebase.config";
 import { Helmet } from "react-helmet-async";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Register = () => {
     const { createUser } = useAuth()
     const { register, handleSubmit } = useForm();
+
+    const axiosPublic = useAxiosPublic();
 
     const onSubmit = data => {
         const { email, password, url, username } = data;
@@ -21,7 +24,17 @@ const Register = () => {
                     displayName: username,
                     photoURL: url
                 }).then(() => {
-                    console.log("Profile Updated!")
+                    const userInfo = {
+                        name: username,
+                        email: email
+                    }
+                    axiosPublic.post(`/users`, userInfo)
+                        .then(res => {
+                            if (res.data.insertedId) {
+                                console.log("User Data Inserted")
+                            }
+                        })
+
                 }).catch((error) => {
                     console.log(error)
                     console.log("An Error Occured While Updating")
