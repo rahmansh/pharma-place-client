@@ -8,6 +8,7 @@ import Home from "../pages/Home/Home/Home";
 import Cart from "../pages/Cart/Cart";
 import Shop from "../pages/Shop/Shop";
 import MedicineCategory from "../pages/MedicineCategory/MedicineCategory";
+import Dashboard from "../layouts/Dashboard/Dashboard";
 
 const router = createBrowserRouter([
     {
@@ -17,10 +18,6 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Home />
-            },
-            {
-                path: "/cart",
-                element: <Cart />
             },
             {
                 path: "/shop",
@@ -40,6 +37,16 @@ const router = createBrowserRouter([
             }
         ]
     },
+    {
+        path: 'dashboard',
+        element: <Dashboard />,
+        children: [
+            {
+                path: "cart",
+                element: <Cart />
+            }
+        ]
+    }
 ]);
 
 

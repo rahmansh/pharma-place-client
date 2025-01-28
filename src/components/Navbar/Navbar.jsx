@@ -21,7 +21,7 @@ const Navbar = () => {
         <li><Link to={"/"}>Home</Link></li>
         <li><Link to={"/shop"}>Shop</Link></li>
         {!user && <li><a>Join US</a></li>}
-        <li><Link to={"/cart"}><button><IoCartOutline className='text-primary text-2xl' /></button></Link></li>
+        <li><Link to={"/dashboard/cart"}><button><IoCartOutline className='text-primary text-2xl' /></button></Link></li>
 
     </>
 
