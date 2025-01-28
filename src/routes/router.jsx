@@ -29,17 +29,17 @@ const router = createBrowserRouter([
             {
                 path: "/medicine/:category",
                 element: <MedicineCategory />
+            },
+            {
+                path: "/login",
+                element: <Login />
+            },
+            {
+                path: "/register",
+                element: <Register />
             }
         ]
     },
-    {
-        path: "/login",
-        element: <Login />
-    },
-    {
-        path: "/register",
-        element: <Register />
-    }
 ]);
 
 

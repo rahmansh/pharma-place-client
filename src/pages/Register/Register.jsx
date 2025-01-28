@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import Navbar from "../../components/Navbar/Navbar";
 import useAuth from "../../hooks/useAuth";
 import { updateProfile } from "firebase/auth";
 import auth from "../../firebase/firebase.config";
@@ -55,7 +54,6 @@ const Register = () => {
             <Helmet>
                 <title>PharmaPlace | Login</title>
             </Helmet>
-            <Navbar />
             <div className="hero bg-base-200 min-h-screen">
                 <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
                     <form onSubmit={handleSubmit(onSubmit)} className="card-body">
