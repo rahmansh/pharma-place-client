@@ -1,14 +1,25 @@
 import { FaGoogle } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const SocialLogin = () => {
     const { googleSignIn } = useAuth();
+
+    const axiosPublic = useAxiosPublic();
 
     const handleGoogleSignIn = () => {
         googleSignIn()
             .then((result) => {
                 const user = result.user;
-                console.log(user);
+                const userInfo = {
+                    email: user?.email,
+                    name: user?.displayName
+                }
+
+                axiosPublic.post("/users", userInfo)
+                    .then(res => {
+                        console.log(res.data)
+                    })
             }).catch((error) => {
                 console.log("Error Code: ", error.code);
                 console.log("Error Message: ", error.message);
