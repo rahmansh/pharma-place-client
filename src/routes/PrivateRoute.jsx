@@ -3,7 +3,8 @@ import useAuth from "../hooks/useAuth";
 
 const PrivateRoute = ({ children }) => {
     const { user, loading } = useAuth();
-    location = useLocation();
+    const location = useLocation();
+    console.log(location)
 
     if (loading) {
         return <h2>Loading....</h2>
@@ -13,7 +14,7 @@ const PrivateRoute = ({ children }) => {
         return children;
     }
 
-    return <Navigate to="/login" state={{ from: location }} />
+    return <Navigate to="/login" replace state={{ from: location }} />
 };
 
 export default PrivateRoute;

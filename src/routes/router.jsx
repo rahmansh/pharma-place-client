@@ -9,6 +9,7 @@ import Cart from "../pages/Cart/Cart";
 import Shop from "../pages/Shop/Shop";
 import MedicineCategory from "../pages/MedicineCategory/MedicineCategory";
 import Dashboard from "../layouts/Dashboard/Dashboard";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -39,7 +40,7 @@ const router = createBrowserRouter([
     },
     {
         path: 'dashboard',
-        element: <Dashboard />,
+        element: <PrivateRoute><Dashboard /></PrivateRoute>,
         children: [
             {
                 path: "cart",
