@@ -1,4 +1,4 @@
-import { FaHome } from "react-icons/fa";
+import { FaHome, FaUsers } from "react-icons/fa";
 import { MdMenu } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
 
@@ -7,7 +7,7 @@ const Dashboard = () => {
     const role = 'admin';
 
     return (
-        <div className="flex min-h-screen">
+        <div className="flex min-h-screen font-bold">
             <div className="drawer lg:drawer-open w-auto">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content p-3">
@@ -24,7 +24,10 @@ const Dashboard = () => {
                             role === 'admin' &&
                             <>
                                 <li>
-                                    <NavLink to={"/dashboard/manageUser"}>Manage Users</NavLink>
+                                    <NavLink to={"/dashboard/manageUsers"}>
+                                        <FaUsers />
+                                        Manage Users
+                                    </NavLink>
                                 </li>
                                 <li>
                                     <NavLink to={"/dashboard/manageCategory"}>Manage Category</NavLink>

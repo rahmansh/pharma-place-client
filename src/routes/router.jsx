@@ -10,6 +10,7 @@ import Shop from "../pages/Shop/Shop";
 import MedicineCategory from "../pages/MedicineCategory/MedicineCategory";
 import Dashboard from "../layouts/Dashboard/Dashboard";
 import PrivateRoute from "./PrivateRoute";
+import ManageUsers from "../layouts/ManageUsers/ManageUsers";
 
 const router = createBrowserRouter([
     {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
             {
                 path: "cart",
                 element: <Cart />
+            },
+            {
+                path: "manageUsers",
+                element: <ManageUsers />
             }
         ]
     }
