@@ -1,12 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { FaTrash } from "react-icons/fa";
+import { useState } from "react";
 
 const ManageUsers = () => {
 
     const axiosSecure = useAxiosSecure();
 
-    const { data: users = [] } = useQuery({
+    const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
             const res = await axiosSecure.get("/users");
@@ -14,10 +15,45 @@ const ManageUsers = () => {
         }
     })
 
+    const handleSelect = (id, value) => {
+        if (value === 'Admin') {
+            axiosSecure.patch(`/users/admin/${id}`)
+                .then(res => {
+                    if (res.data.modifiedCount > 0) {
+                        console.log("Role Updated")
+                    }
+                    refetch();
+                })
+        }
+        else if (value === 'Seller') {
+            axiosSecure.patch(`/users/seller/${id}`)
+                .then(res => {
+                    if (res.data.modifiedCount > 0) {
+                        console.log("Role Updated")
+                    }
+                    refetch();
+                })
+        }
+        else if (value === 'User') {
+            axiosSecure.patch(`/user/${id}`)
+                .then(res => {
+                    if (res.data.modifiedCount > 0) {
+                        console.log("Role Updated")
+                    }
+                    refetch();
+                })
+        }
+
+    }
+
+
+
+
+
 
     return (
         <div>
-            <h1 className="text-center">Manage Users: {users.length}</h1>
+            <h1 className="text-center">Manage Users</h1>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
@@ -37,7 +73,17 @@ const ManageUsers = () => {
                                 <th>{index + 1}</th>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
-                                <td>{user.role}</td>
+                                <td>
+                                    <select
+                                        className="select select-bordered"
+                                        value={user.role}
+                                        onChange={(e) => handleSelect(user._id, e.target.value)}
+                                    >
+                                        <option value="User">User</option>
+                                        <option value="Seller">Seller</option>
+                                        <option value="Admin">Admin</option>
+                                    </select>
+                                </td>
                                 <td><button className="btn"><FaTrash /></button></td>
                             </tr>)
                         }
