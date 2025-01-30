@@ -4,12 +4,16 @@ import PropTypes from 'prop-types';
 import auth from "../firebase/firebase.config";
 import { GoogleAuthProvider } from "firebase/auth";
 import { useEffect, useState } from "react";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 const AuthProvider = ({ children }) => {
     const provider = new GoogleAuthProvider();
     const [user, setUser] = useState();
     const [loading, setLoading] = useState(true);
     const isLoggedIn = false;
+
+    // axios
+    const axiosPublic = useAxiosPublic();
 
 
     const createUser = (email, password) => {
@@ -44,7 +48,24 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            setUser(currentUser)
+            setUser(currentUser);
+
+            // storing jsonwebtoken in local storage
+            if (user) {
+                const userInfo = {
+                    email: user.email
+                }
+
+                axiosPublic.post("/jwt", userInfo)
+                    .then(res => {
+                        if (res.data) {
+                            localStorage.setItem('access-token', res.data.token)
+                        }
+                    })
+            } else {
+                localStorage.removeItem('access-token')
+            }
+
             setLoading(false);
         })
 
