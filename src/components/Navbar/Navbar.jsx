@@ -74,7 +74,7 @@ const Navbar = () => {
                                     </div>
                                     <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
                                         <li><a>Update Profile</a></li>
-                                        <li><a>Dashboard</a></li>
+                                        <li><Link to={"/dashboard/cart"}>Dashboard</Link></li>
                                         <li><button onClick={handleLogout}>Logout</button></li>
                                     </ul>
                                 </div>
