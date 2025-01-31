@@ -51,9 +51,9 @@ const AuthProvider = ({ children }) => {
             setUser(currentUser);
 
             // storing jsonwebtoken in local storage
-            if (user) {
+            if (currentUser) {
                 const userInfo = {
-                    email: user.email
+                    email: currentUser.email
                 }
 
                 axiosPublic.post("/jwt", userInfo)
