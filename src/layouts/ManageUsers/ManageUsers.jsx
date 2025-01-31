@@ -49,7 +49,11 @@ const ManageUsers = () => {
 
 
     const handleDelete = (id) => {
-
+        axiosSecure.delete(`/user/${id}`)
+            .then(res => {
+                console.log(res)
+                refetch();
+            })
     }
 
 
