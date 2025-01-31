@@ -1,10 +1,11 @@
 import { FaHome, FaUsers } from "react-icons/fa";
 import { MdMenu } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../../hooks/useAdmin";
 
 const Dashboard = () => {
 
-    const role = 'admin';
+    const [role] = useAdmin();
 
     return (
         <div className="flex min-h-screen font-bold">
@@ -21,7 +22,7 @@ const Dashboard = () => {
                     <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
                         {/* Sidebar content here */}
                         {
-                            role === 'admin' &&
+                            role === 'Admin' &&
                             <>
                                 <li>
                                     <NavLink to={"/dashboard/manageUsers"}>
@@ -44,7 +45,7 @@ const Dashboard = () => {
                             </>
                         }
                         {
-                            role === 'seller' &&
+                            role === 'Seller' &&
                             <>
                                 <li>
                                     <NavLink to={"/dashboard/manageMedicines"}>Manage Medicines</NavLink>
@@ -58,7 +59,7 @@ const Dashboard = () => {
                             </>
                         }
                         {
-                            role === 'user' &&
+                            role === 'User' &&
                             <>
                                 <li>
                                     <NavLink to={"/dashboard/manageMedicines"}>Manage Medicines</NavLink>
