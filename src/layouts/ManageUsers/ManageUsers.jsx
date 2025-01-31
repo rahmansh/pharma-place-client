@@ -1,8 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { FaTrash } from "react-icons/fa";
+import useAuth from "../../hooks/useAuth";
 
 const ManageUsers = () => {
+    const { user: currentUser } = useAuth();
 
     const axiosSecure = useAxiosSecure();
 
@@ -46,6 +48,11 @@ const ManageUsers = () => {
     }
 
 
+    const handleDelete = (id) => {
+
+    }
+
+
 
 
 
@@ -77,13 +84,18 @@ const ManageUsers = () => {
                                         className="select select-bordered"
                                         value={user.role}
                                         onChange={(e) => handleSelect(user._id, e.target.value)}
+                                        disabled={user.email === currentUser.email}
                                     >
                                         <option value="User">User</option>
                                         <option value="Seller">Seller</option>
                                         <option value="Admin">Admin</option>
                                     </select>
                                 </td>
-                                <td><button className="btn"><FaTrash /></button></td>
+                                <td>
+                                    <button
+                                        disabled={user.email === currentUser.email}
+                                        onClick={() => handleDelete(user._id)} className="btn"><FaTrash /></button>
+                                </td>
                             </tr>)
                         }
 
