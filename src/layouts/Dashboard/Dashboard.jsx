@@ -2,6 +2,7 @@ import { FaHome, FaUsers } from "react-icons/fa";
 import { MdMenu } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../../hooks/useAdmin";
+import { RiAdvertisementFill } from "react-icons/ri";
 
 const Dashboard = () => {
 
@@ -40,7 +41,10 @@ const Dashboard = () => {
                                     <NavLink to={"/dashboard/salesReport"}>Sales Report</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to={"/dashboard/manageBanner"}>Manage Banner Advertise</NavLink>
+                                    <NavLink to={"/dashboard/manageBanner"}>
+                                        <RiAdvertisementFill />
+                                        Manage Banner Advertise
+                                    </NavLink>
                                 </li>
                             </>
                         }
