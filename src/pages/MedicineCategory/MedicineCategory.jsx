@@ -53,8 +53,9 @@ const MedicineCategory = () => {
                 .catch((err) => console.error("Error fetching cart items: ", err))
 
 
+        } else {
+            navigate('/login')
         }
-        navigate('/login')
     }
 
 
