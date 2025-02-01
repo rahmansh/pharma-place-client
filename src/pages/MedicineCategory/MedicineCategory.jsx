@@ -1,7 +1,8 @@
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
+import { toast } from 'react-toastify';
 
 const MedicineCategory = () => {
     const { user } = useAuth();
@@ -13,7 +14,6 @@ const MedicineCategory = () => {
 
     // routing
     const navigate = useNavigate();
-    const location = useLocation()
 
     const selectedCategory = medicines?.filter((item) => item.category == category)
 
@@ -38,8 +38,16 @@ const MedicineCategory = () => {
                         axiosSecure.patch(`/carts/${existingItem._id}`, {
                             orderQuantity: existingItem.orderQuantity + 1,
                         })
-                            .then((res) => console.log("Quantity updated: ", res.data))
-                            .catch((err) => console.error("Error updating quantity: ", err))
+                            .then((res) => {
+                                // console.log("Quantity updated: ", res)
+                                if (res.data.success) {
+                                    toast.success("Quantity Updated");
+                                }
+                            })
+                            .catch((err) => {
+                                console.log(err)
+                                toast.error("Error Updating Quantity");
+                            })
                     } else {
                         axiosSecure.post("/carts", cartItem)
                             .then((response) => {
