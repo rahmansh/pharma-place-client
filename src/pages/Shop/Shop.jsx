@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const Shop = () => {
     const { user } = useAuth();
@@ -8,10 +9,7 @@ const Shop = () => {
     const [medicines, setMedicines] = useState([]);
     const [selectedMedicine, setSelectedMedicine] = useState(null);
 
-
-    console.log(medicines)
-
-
+    const navigate = useNavigate();
 
     const handleAddToCart = (item) => {
         if (user && user.email) {
@@ -48,6 +46,10 @@ const Shop = () => {
                 })
                 .catch((err) => console.error("Error fetching cart items: ", err))
         }
+
+        navigate("/login")
+
+
     }
 
 

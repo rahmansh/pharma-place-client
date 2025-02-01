@@ -2,7 +2,6 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
-import axios from "axios";
 
 const MedicineCategory = () => {
     const { user } = useAuth();
@@ -55,6 +54,7 @@ const MedicineCategory = () => {
 
 
         }
+        navigate('/login')
     }
 
 
@@ -68,7 +68,7 @@ const MedicineCategory = () => {
     useEffect(() => {
         axiosSecure.get(`/medicines`)
             .then((res) => setMedicines(res.data))
-    }, [category])
+    }, [axiosSecure])
 
     return (
         <div>
