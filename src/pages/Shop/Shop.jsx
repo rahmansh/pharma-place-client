@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Shop = () => {
     const { user } = useAuth();
@@ -32,15 +33,27 @@ const Shop = () => {
                         axiosSecure.patch(`/carts/${existingItem._id}`, {
                             orderQuantity: existingItem.orderQuantity + 1,
                         })
-                            .then((res) => console.log("Quantity updated: ", res.data))
-                            .catch((err) => console.error("Error updating quantity: ", err))
+                            .then((res) => {
+                                // console.log("Quantity updated: ", res)
+                                if (res.data.success) {
+                                    toast.success("Quantity Updated!")
+                                }
+                            })
+                            .catch((err) => {
+                                console.error("Error updating quantity: ", err)
+                                toast.error("Error updating Quantity!")
+                            })
                     } else {
                         axiosSecure.post("/carts", cartItem)
                             .then((response) => {
-                                console.log(response)
+                                // console.log(response)
+                                if (response.data.insertedId) {
+                                    toast.success("Added to Cart");
+                                }
                             })
                             .catch((error) => {
-                                console.log(error)
+                                console.error(error)
+                                toast.error("Error")
                             })
                     }
                 })
@@ -64,7 +77,7 @@ const Shop = () => {
     useEffect(() => {
         axiosSecure.get(`/medicines`)
             .then((res) => setMedicines(res.data))
-    }, [])
+    }, [axiosSecure])
 
     return (
         <div>
