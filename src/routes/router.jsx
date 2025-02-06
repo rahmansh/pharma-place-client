@@ -44,10 +44,13 @@ const router = createBrowserRouter([
         path: 'dashboard',
         element: <PrivateRoute><Dashboard /></PrivateRoute>,
         children: [
+            // normal user routes
             {
                 path: "cart",
                 element: <Cart />
             },
+
+            // admin only routes
             {
                 path: "manageUsers",
                 element: <ManageUsers />
