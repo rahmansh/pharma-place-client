@@ -12,6 +12,7 @@ import Dashboard from "../layouts/Dashboard/Dashboard";
 import PrivateRoute from "./PrivateRoute";
 import ManageUsers from "../layouts/ManageUsers/ManageUsers";
 import ManageBanner from "../pages/Dashboard/ManageBanner/ManageBanner";
+import UserHome from "../pages/UserHome/UserHome/UserHome";
 
 const router = createBrowserRouter([
     {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
         element: <PrivateRoute><Dashboard /></PrivateRoute>,
         children: [
             // normal user routes
+            {
+                path: "userHome",
+                element: <UserHome />
+            },
             {
                 path: "cart",
                 element: <Cart />

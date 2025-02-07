@@ -2,10 +2,13 @@ import { Link } from 'react-router-dom';
 import navImg from '../../assets/images/pharma-place.webp'
 import useAuth from '../../hooks/useAuth';
 import { IoCartOutline } from "react-icons/io5";
+import useAdmin from '../../hooks/useAdmin';
 
 const Navbar = () => {
     const { user } = useAuth();
     const { logOut } = useAuth();
+    const [role] = useAdmin();
+
 
     const handleLogout = () => {
         logOut().then(() => {
@@ -74,7 +77,8 @@ const Navbar = () => {
                                     </div>
                                     <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
                                         <li><a>Update Profile</a></li>
-                                        <li><Link to={"/dashboard/cart"}>Dashboard</Link></li>
+                                        {role === 'User' && <li><Link to={"/dashboard/userHome"}>Dashboard</Link></li>}
+                                        {/* <li><Link to={"/dashboard/cart"}>Dashboard</Link></li> */}
                                         <li><button onClick={handleLogout}>Logout</button></li>
                                     </ul>
                                 </div>
