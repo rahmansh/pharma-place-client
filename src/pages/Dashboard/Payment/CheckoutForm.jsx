@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useCart from "../../../hooks/useCart";
+import { toast } from "react-toastify";
 
 const CheckoutForm = () => {
     const [error, setError] = useState('')
@@ -15,7 +16,7 @@ const CheckoutForm = () => {
     const { user } = useAuth();
 
     const axiosSecure = useAxiosSecure();
-    const [cart] = useCart();
+    const [cart, refetch] = useCart();
     const totalPrice = cart.reduce((total, item) => total + item.price, 0);
 
     useEffect(() => {
@@ -89,7 +90,12 @@ const CheckoutForm = () => {
                     status: 'pending'
                 }
                 const res = await axiosSecure.post('/payments', payment)
-                console.log(res)
+                console.log("Payment Saved: ", res)
+
+                refetch();
+                if (res.data?.paymentResult?.insertedId) {
+                    toast.success("Payment Successful!")
+                }
 
             }
         }
