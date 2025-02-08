@@ -14,6 +14,7 @@ import ManageUsers from "../layouts/ManageUsers/ManageUsers";
 import ManageBanner from "../pages/Dashboard/ManageBanner/ManageBanner";
 import UserHome from "../pages/UserHome/UserHome/UserHome";
 import Payment from "../pages/Dashboard/Payment/Payment";
+import ManageMedicines from "../pages/Dashboard/Seller/ManageMedicines/ManageMedicines";
 
 const router = createBrowserRouter([
     {
@@ -58,6 +59,12 @@ const router = createBrowserRouter([
             {
                 path: "payment",
                 element: <Payment />
+            },
+
+            // seller
+            {
+                path: "manageMedicines",
+                element: <ManageMedicines />
             },
 
             // admin only routes
