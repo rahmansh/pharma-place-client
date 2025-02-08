@@ -1,4 +1,4 @@
-import { FaHome, FaUsers } from "react-icons/fa";
+import { FaHistory, FaHome, FaUsers } from "react-icons/fa";
 import { MdMenu } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../../hooks/useAdmin";
@@ -66,7 +66,10 @@ const Dashboard = () => {
                             role === 'User' &&
                             <>
                                 <li>
-                                    <NavLink to={"/dashboard/userHome"}>Payment History</NavLink>
+                                    <NavLink to={"/dashboard/userHome"}>
+                                        <FaHistory />
+                                        Payment History
+                                    </NavLink>
                                 </li>
                             </>
                         }
