@@ -103,9 +103,12 @@ const Cart = () => {
             <div className="flex mt-4 justify-around mb-4">
                 <h2 className="text-4xl">Items: {cart.length}</h2>
                 <h2 className="text-4xl">Total Price: </h2>
-                <Link to="/dashboard/payment">
-                    <button className="btn btn-warning">Pay</button>
-                </Link>
+                {
+                    cart.length > 0 ? <Link to="/dashboard/payment">
+                        <button className="btn btn-warning">Pay</button>
+                    </Link> :
+                        <button disabled className="btn btn-warning">Pay</button>
+                }
             </div>
             <div className="overflow-x-auto">
                 <table className="table">
