@@ -1,10 +1,30 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useCart from "../../../hooks/useCart";
 
 const CheckoutForm = () => {
     const [error, setError] = useState('')
     const stripe = useStripe();
     const elements = useElements();
+    const [clientSecret, setClientSecret] = useState("");
+
+    const { user } = useAuth();
+
+    const axiosSecure = useAxiosSecure();
+    const [cart] = useCart();
+    const totalPrice = cart.reduce((total, item) => total + item.price, 0);
+
+    useEffect(() => {
+        axiosSecure.post('/create-payment-intent', { price: totalPrice })
+            .then(res => {
+                console.log(res.data)
+                setClientSecret(res.data.clientSecret)
+            })
+    }, [axiosSecure, totalPrice])
+
+
 
 
     const handleSubmit = async (e) => {
@@ -33,6 +53,26 @@ const CheckoutForm = () => {
             setError('');
         }
 
+        // confirm payment
+        const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(
+            clientSecret,
+            {
+                payment_method: {
+                    card: card,
+                    billing_details: {
+                        email: user.email || 'anonymous',
+                        name: user?.displayName || 'anonymous'
+                    }
+                }
+            }
+        )
+
+        if (confirmError) {
+            console.log('confirm error: ', confirmError)
+        } else {
+            console.log('[paymentIntent]', paymentIntent)
+        }
+
     }
 
     return (
@@ -53,7 +93,7 @@ const CheckoutForm = () => {
                     },
                 }}
             />
-            <button className="btn btn-sm btn-primary my-4" type="submit" disabled={!stripe}>
+            <button className="btn btn-sm btn-primary my-4" type="submit" disabled={!stripe || !clientSecret}>
                 Pay
             </button>
             <p className="text-red-600">{error}</p>
