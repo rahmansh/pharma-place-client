@@ -9,6 +9,9 @@ const Cart = () => {
     const { user } = useAuth();
     // console.log(cart);
 
+    const totalPrice = cart.reduce((total, item) => total + item.price, 0);
+
+
     const axiosSecure = useAxiosSecure();
 
     const handleDelete = id => {
@@ -102,7 +105,7 @@ const Cart = () => {
         <div>
             <div className="flex mt-4 justify-around mb-4">
                 <h2 className="text-4xl">Items: {cart.length}</h2>
-                <h2 className="text-4xl">Total Price: </h2>
+                <h2 className="text-4xl">Total Price: {totalPrice} </h2>
                 {
                     cart.length > 0 ? <Link to="/dashboard/payment">
                         <button className="btn btn-warning">Pay</button>
