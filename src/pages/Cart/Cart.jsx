@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useCart from "../../hooks/useCart";
@@ -99,6 +100,13 @@ const Cart = () => {
 
     return (
         <div>
+            <div className="flex mt-4 justify-around mb-4">
+                <h2 className="text-4xl">Items: {cart.length}</h2>
+                <h2 className="text-4xl">Total Price: </h2>
+                <Link to="/dashboard/payment">
+                    <button className="btn btn-warning">Pay</button>
+                </Link>
+            </div>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}

@@ -13,6 +13,7 @@ import PrivateRoute from "./PrivateRoute";
 import ManageUsers from "../layouts/ManageUsers/ManageUsers";
 import ManageBanner from "../pages/Dashboard/ManageBanner/ManageBanner";
 import UserHome from "../pages/UserHome/UserHome/UserHome";
+import Payment from "../pages/Dashboard/Payment/Payment";
 
 const router = createBrowserRouter([
     {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
             {
                 path: "cart",
                 element: <Cart />
+            },
+            {
+                path: "payment",
+                element: <Payment />
             },
 
             // admin only routes
