@@ -15,6 +15,7 @@ import ManageBanner from "../pages/Dashboard/ManageBanner/ManageBanner";
 import UserHome from "../pages/UserHome/UserHome/UserHome";
 import Payment from "../pages/Dashboard/Payment/Payment";
 import ManageMedicines from "../pages/Dashboard/Seller/ManageMedicines/ManageMedicines";
+import PaymentHistory from "../pages/Dashboard/Seller/PaymentHistory/PaymentHistory";
 
 const router = createBrowserRouter([
     {
@@ -65,6 +66,10 @@ const router = createBrowserRouter([
             {
                 path: "manageMedicines",
                 element: <ManageMedicines />
+            },
+            {
+                path: "seller/paymentHistory",
+                element: <PaymentHistory />
             },
 
             // admin only routes
