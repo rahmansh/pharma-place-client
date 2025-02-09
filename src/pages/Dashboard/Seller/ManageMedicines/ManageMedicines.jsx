@@ -99,23 +99,32 @@ const ManageMedicines = () => {
                                             <input {...register("price")} type="number" placeholder="Price" className="input input-bordered w-full bg-white" />
                                         </label>
                                     </div>
-                                    {/* Category Dropdown */}
-                                    <div className="w-full">
-                                        <div className="label">
-                                            <span className="text-black">Category*</span>
-                                        </div>
-                                        <select defaultValue={"default"} {...register("category")} className="select bg-white w-full">
-                                            <option value={"default"}>Select Category</option>
-                                            <option value="Tablets">Tablets</option>
-                                            <option value="Syrups">Syrups</option>
-                                            <option value="Capsules">Capsules</option>
-                                            <option value="Injections">Injections</option>
-                                            <option value="Ointments">Ointments</option>
-                                            <option value="Others">Others</option>
-                                        </select>
+                                    {/* Discount */}
+                                    <div>
+                                        <label className="form-control w-full">
+                                            <div className="label">
+                                                <span className="text-black">Discount(%)</span>
+                                            </div>
+                                            <input {...register("discount")} type="number" placeholder="Discount" className="input input-bordered w-full bg-white" />
+                                        </label>
                                     </div>
-                                </div>
 
+                                </div>
+                                {/* Category Dropdown */}
+                                <div className="w-full">
+                                    <div className="label">
+                                        <span className="text-black">Category*</span>
+                                    </div>
+                                    <select defaultValue={"default"} {...register("category")} className="select bg-white w-full">
+                                        <option value={"default"}>Select Category</option>
+                                        <option value="Tablets">Tablets</option>
+                                        <option value="Syrups">Syrups</option>
+                                        <option value="Capsules">Capsules</option>
+                                        <option value="Injections">Injections</option>
+                                        <option value="Ointments">Ointments</option>
+                                        <option value="Others">Others</option>
+                                    </select>
+                                </div>
                                 {/* image upload */}
                                 <div className="my-6">
                                     <input {...register('image')} type="file" className="file-input w-full max-w-xs bg-white" />
