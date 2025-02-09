@@ -15,6 +15,7 @@ const ManageMedicines = () => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
 
+
     const axiosPublic = useAxiosPublic();
 
     const [isOpen, setIsOpen] = useState(false)
@@ -38,13 +39,14 @@ const ManageMedicines = () => {
                 image: res.data.data.display_url,
                 discount: parseFloat(data.discount),
                 addedBy: user.email,
-                category: data.category
+                category: data.category,
+                company: data.company
             }
 
             const medicineRes = await axiosSecure.post("/medicines", medicine)
 
             if (medicineRes.data.insertedId) {
-                toast.success("Data Added")
+                toast.success("Data Added");
             }
         }
 
@@ -144,20 +146,38 @@ const ManageMedicines = () => {
                                     </div>
 
                                 </div>
-                                {/* Category Dropdown */}
-                                <div className="w-full">
-                                    <div className="label">
-                                        <span className="text-black">Category*</span>
+                                <div className="flex gap-6">
+                                    {/* Category Dropdown */}
+                                    <div className="w-full">
+                                        <div className="label">
+                                            <span className="text-black">Company*</span>
+                                        </div>
+                                        <select defaultValue={"default"} {...register("company")} className="select bg-white w-full">
+                                            <option value={"default"}>Select Company</option>
+                                            <option value="XYZ Pharma">XYZ Pharma</option>
+                                            <option value="ABC Pharma">ABC Pharma</option>
+                                            <option value="123 Pharma">123 Pharma</option>
+                                            <option value="HealthCo">HealthCo</option>
+                                            <option value="Wellness Pharma">Wellness Pharma</option>
+                                            <option value="NutriPharma">NutriPharma</option>
+                                            <option value="SunPharma">SunPharma</option>
+                                        </select>
                                     </div>
-                                    <select defaultValue={"default"} {...register("category")} className="select bg-white w-full">
-                                        <option value={"default"}>Select Category</option>
-                                        <option value="Tablets">Tablets</option>
-                                        <option value="Syrups">Syrups</option>
-                                        <option value="Capsules">Capsules</option>
-                                        <option value="Injections">Injections</option>
-                                        <option value="Ointments">Ointments</option>
-                                        <option value="Others">Others</option>
-                                    </select>
+                                    {/* Company Dropdown */}
+                                    <div className="w-full">
+                                        <div className="label">
+                                            <span className="text-black">Category*</span>
+                                        </div>
+                                        <select defaultValue={"default"} {...register("category")} className="select bg-white w-full">
+                                            <option value={"default"}>Select Category</option>
+                                            <option value="Tablets">Tablets</option>
+                                            <option value="Syrups">Syrups</option>
+                                            <option value="Capsules">Capsules</option>
+                                            <option value="Injections">Injections</option>
+                                            <option value="Ointments">Ointments</option>
+                                            <option value="Others">Others</option>
+                                        </select>
+                                    </div>
                                 </div>
                                 {/* image upload */}
                                 <div className="my-6">
