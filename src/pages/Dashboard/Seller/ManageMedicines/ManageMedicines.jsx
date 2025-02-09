@@ -37,7 +37,7 @@ const ManageMedicines = () => {
                 genericName: data.genericName,
                 price: parseFloat(data.price),
                 image: res.data.data.display_url,
-                discount: parseFloat(data.discount),
+                discount: data.discount ? parseFloat(data.discount) : 0,
                 addedBy: user.email,
                 category: data.category,
                 company: data.company
