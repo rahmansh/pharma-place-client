@@ -2,7 +2,12 @@ import { useEffect, useState } from "react";
 import useAuth from "../../../../hooks/useAuth";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { useForm } from "react-hook-form"
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import { toast } from "react-toastify";
 
+
+const image_hosting_key = import.meta.env.VITE_IMAGE_BB;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const ManageMedicines = () => {
     const { register, handleSubmit } = useForm();
@@ -10,10 +15,39 @@ const ManageMedicines = () => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
 
+    const axiosPublic = useAxiosPublic();
+
     const [isOpen, setIsOpen] = useState(false)
 
     const onSubmit = async (data) => {
         console.log(data)
+        const imageFile = { image: data.image[0] }
+
+        const res = await axiosPublic.post(image_hosting_api, imageFile, {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        })
+
+
+        if (res.data.success) {
+            const medicine = {
+                name: data.name,
+                genericName: data.genericName,
+                price: parseFloat(data.price),
+                image: res.data.data.display_url,
+                discount: parseFloat(data.discount),
+                addedBy: user.email,
+                category: data.category
+            }
+
+            const medicineRes = await axiosSecure.post("/medicines", medicine)
+
+            if (medicineRes.data.insertedId) {
+                toast.success("Data Added")
+            }
+        }
+
     };
 
     useEffect(() => {
