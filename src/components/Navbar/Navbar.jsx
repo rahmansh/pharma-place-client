@@ -2,10 +2,14 @@ import { Link } from 'react-router-dom';
 import navImg from '../../assets/images/pharma-place.webp'
 import useAuth from '../../hooks/useAuth';
 import { IoCartOutline } from "react-icons/io5";
+import useAdmin from '../../hooks/useAdmin';
 
 const Navbar = () => {
     const { user } = useAuth();
     const { logOut } = useAuth();
+
+    const [role] = useAdmin();
+    console.log(role)
 
 
     const handleLogout = () => {
