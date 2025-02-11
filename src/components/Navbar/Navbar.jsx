@@ -79,8 +79,10 @@ const Navbar = () => {
                                     </div>
                                     <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
                                         <li><a>Update Profile</a></li>
+                                        {role === "Admin" && <li><Link to={"/dashboard/manageUsers"}>Dashboard</Link></li>}
 
-                                        <li><Link to={"/dashboard"}>Dashboard</Link></li>
+                                        {role === "Seller" && <li><Link to={"/dashboard/manageMedicines"}>Dashboard</Link></li>}
+                                        {role === "User" && <li><Link to={"/dashboard/userPaymentHistory"}>Dashboard</Link></li>}
                                         <li><button onClick={handleLogout}>Logout</button></li>
                                     </ul>
                                 </div>
