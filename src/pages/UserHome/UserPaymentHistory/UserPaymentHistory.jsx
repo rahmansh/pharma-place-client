@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
-const PaymentHistory = () => {
+const UserPaymentHistory = () => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure()
 
@@ -48,4 +48,4 @@ const PaymentHistory = () => {
     );
 };
 
-export default PaymentHistory;
+export default UserPaymentHistory;

@@ -1,9 +1,9 @@
-import PaymentHistory from "../PaymentHistory/PaymentHistory";
+import UserPaymentHistory from "../UserPaymentHistory/UserPaymentHistory";
 
 const UserHome = () => {
     return (
         <div>
-            <PaymentHistory />
+            <UserPaymentHistory />
         </div>
     );
 };
