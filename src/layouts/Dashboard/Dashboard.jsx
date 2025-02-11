@@ -7,6 +7,7 @@ import { RiAdvertisementFill } from "react-icons/ri";
 const Dashboard = () => {
 
     const [role] = useAdmin();
+    console.log(role)
 
     return (
         <div className="flex min-h-screen font-bold">
