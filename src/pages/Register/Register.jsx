@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { updateProfile } from "firebase/auth";
 import auth from "../../firebase/firebase.config";
@@ -10,8 +10,13 @@ import SocialLogin from "../../components/SocialLogin/SocialLogin";
 const Register = () => {
     const { createUser } = useAuth()
     const { register, handleSubmit } = useForm();
+    const navigate = useNavigate()
+    const location = useLocation();
 
     const axiosPublic = useAxiosPublic();
+
+    let from = location.state?.from?.pathname || "/";
+
 
     const onSubmit = data => {
         const { email, password, url, username } = data;
@@ -33,6 +38,7 @@ const Register = () => {
                         .then(res => {
                             if (res.data.insertedId) {
                                 console.log("User Data Inserted")
+                                navigate(from, { replace: true })
                             }
                         })
 

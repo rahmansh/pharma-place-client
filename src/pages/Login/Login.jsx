@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import { Helmet } from 'react-helmet-async';
@@ -8,6 +8,11 @@ import SocialLogin from "../../components/SocialLogin/SocialLogin";
 const Login = () => {
     const { register, handleSubmit } = useForm();
     const { signInUser } = useAuth();
+    const navigate = useNavigate()
+    const location = useLocation();
+
+    let from = location.state?.from?.pathname || "/";
+
 
     const onSubmit = data => {
         const { email, password } = data;
@@ -16,6 +21,7 @@ const Login = () => {
             .then((userCredential) => {
                 const user = userCredential.user;
                 console.log(user);
+                navigate(from, { replace: true })
             })
             .catch((error) => {
                 console.log("Error Code: ", error.code);
