@@ -17,6 +17,7 @@ import ManageMedicines from "../pages/Dashboard/Seller/ManageMedicines/ManageMed
 import PaymentHistory from "../pages/Dashboard/Seller/PaymentHistory/PaymentHistory";
 import UserPaymentHistory from "../pages/UserHome/UserPaymentHistory/UserPaymentHistory";
 import AdminHome from "../pages/Dashboard/Admin/AdminHome/AdminHome";
+import ManageCategory from "../pages/Dashboard/Admin/ManageCategory/ManageCategory";
 
 const router = createBrowserRouter([
     {
@@ -81,6 +82,10 @@ const router = createBrowserRouter([
             {
                 path: "manageUsers",
                 element: <ManageUsers />
+            },
+            {
+                path: "manageCategory",
+                element: <ManageCategory />
             },
             {
                 path: "manageBanner",
