@@ -19,6 +19,7 @@ import UserPaymentHistory from "../pages/UserHome/UserPaymentHistory/UserPayment
 import AdminHome from "../pages/Dashboard/Admin/AdminHome/AdminHome";
 import ManageCategory from "../pages/Dashboard/Admin/ManageCategory/ManageCategory";
 import AdminPaymentManagement from "../pages/Dashboard/Admin/AdminPaymentManagement/AdminPaymentManagement";
+import AskAdvertisement from "../pages/Dashboard/Seller/AskAdvertisement/AskAdvertisement";
 
 const router = createBrowserRouter([
     {
@@ -74,7 +75,10 @@ const router = createBrowserRouter([
                 path: "seller/paymentHistory",
                 element: <PaymentHistory />
             },
-
+            {
+                path: "askAdvertisement",
+                element: <AskAdvertisement />
+            },
             // admin only routes
             {
                 path: "adminHome",
