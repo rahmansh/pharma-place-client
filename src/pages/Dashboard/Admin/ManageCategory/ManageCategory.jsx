@@ -11,6 +11,9 @@ const ManageCategory = () => {
 
     const [isOpen, setIsOpen] = useState(false);
 
+    const [editCategory, setEditCategory] = useState(null);
+    const [isEditOpen, setIsEditOpen] = useState(false);
+
     const onSubmit = async (data) => {
         console.log(data);
         axiosSecure.post("/categories", data)
@@ -25,7 +28,29 @@ const ManageCategory = () => {
             })
     };
 
+    const handleUpdate = (category) => {
+        setEditCategory(category);
+        setIsEditOpen(true);
+
+    }
+
+
+    const handleEditSubmit = async (data) => {
+
+        try {
+            const response = await axiosSecure.put(`/categories/${editCategory._id}`, data);
+            if (response.data.modifiedCount > 0) {
+                toast.success("Category Updated Successfully");
+                setIsEditOpen(false);
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+
     const axiosPublic = useAxiosPublic();
+
     const { data: categories, isLoading } = useQuery({
         queryKey: ["categories"],
         queryFn: async () => {
@@ -60,7 +85,7 @@ const ManageCategory = () => {
                                 <tr key={category._id}>
                                     <th>{index + 1}</th>
                                     <td>{category.categoryName}</td>
-                                    <td><button onClick={() => handleUpdate(category._id)}><FaEdit /></button></td>
+                                    <td><button onClick={() => handleUpdate(category)}><FaEdit /></button></td>
                                     <td><button><FaTrash /></button></td>
                                 </tr>
                             ))
@@ -70,6 +95,65 @@ const ManageCategory = () => {
                 </table>
             </div>
 
+            {/* Edit Category Modal  */}
+            {isEditOpen && editCategory && (
+                <div className="modal modal-open" role="dialog">
+                    <div className="modal-box text-center">
+                        <div className="max-w-4xl mx-auto">
+                            <h1 className="text-2xl font-bold">Edit Category</h1>
+                            <form onSubmit={handleSubmit(handleEditSubmit)}>
+                                <div>
+                                    <label className="form-control w-full">
+                                        <div className="label">
+                                            <span className="text-black">Category Name*</span>
+                                        </div>
+                                        <input
+                                            {...register("categoryName")}
+                                            type="text"
+                                            defaultValue={editCategory.categoryName}
+                                            className="input input-bordered w-full bg-white"
+                                        />
+                                    </label>
+                                </div>
+
+                                <div>
+                                    <label className="form-control w-full">
+                                        <div className="label">
+                                            <span className="text-black">Category Image URL*</span>
+                                        </div>
+                                        <input
+                                            {...register("categoryImage")}
+                                            type="text"
+                                            defaultValue={editCategory.categoryImage}
+                                            className="input input-bordered w-full bg-white"
+                                        />
+                                    </label>
+                                </div>
+
+                                <div>
+                                    <label className="form-control w-full">
+                                        <div className="label">
+                                            <span className="text-black">Number of Medicines*</span>
+                                        </div>
+                                        <input
+                                            {...register("numberOfMedicines")}
+                                            type="number"
+                                            defaultValue={editCategory.numberOfMedicines}
+                                            className="input input-bordered w-full bg-white"
+                                        />
+                                    </label>
+                                </div>
+
+                                <input className="btn btn-primary mt-4" value="Update Category" type="submit" />
+                            </form>
+                        </div>
+                    </div>
+                    <div className="modal-backdrop" onClick={() => setIsEditOpen(false)}></div>
+                </div>
+            )}
+
+
+            {/* Add Category Modal  */}
             {isOpen && (
                 <div className="modal modal-open" role="dialog">
                     <div className="modal-box text-center">
