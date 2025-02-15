@@ -21,6 +21,7 @@ const ManageCategory = () => {
                 if (res.data.insertedId) {
                     toast.success("Category Added Successfully");
                     setIsOpen(false);
+                    refetch();
                 }
             })
             .catch(err => {
@@ -42,6 +43,7 @@ const ManageCategory = () => {
             if (response.data.modifiedCount > 0) {
                 toast.success("Category Updated Successfully");
                 setIsEditOpen(false);
+                refetch();
             }
         } catch (error) {
             console.error(error);
@@ -53,6 +55,7 @@ const ManageCategory = () => {
             const response = await axiosSecure.delete(`/categories/${id}`); // delete category
             if (response.data.deletedCount > 0) {
                 toast.success("Category Deleted Successfully");
+                refetch();
             }
 
         } catch (error) {
@@ -62,7 +65,7 @@ const ManageCategory = () => {
 
     const axiosPublic = useAxiosPublic();
 
-    const { data: categories, isLoading } = useQuery({
+    const { data: categories, isLoading, refetch } = useQuery({
         queryKey: ["categories"],
         queryFn: async () => {
             const res = await axiosPublic.get("/categories");
