@@ -27,6 +27,12 @@ const Dashboard = () => {
                             role === 'Admin' &&
                             <>
                                 <li>
+                                    <NavLink to={"/dashboard/adminHome"}>
+                                        <FaHome />
+                                        Admin Home
+                                    </NavLink>
+                                </li>
+                                <li>
                                     <NavLink to={"/dashboard/manageUsers"}>
                                         <FaUsers />
                                         Manage Users
