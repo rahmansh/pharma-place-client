@@ -12,7 +12,6 @@ import Dashboard from "../layouts/Dashboard/Dashboard";
 import PrivateRoute from "./PrivateRoute";
 import ManageUsers from "../layouts/ManageUsers/ManageUsers";
 import ManageBanner from "../pages/Dashboard/ManageBanner/ManageBanner";
-import UserHome from "../pages/UserHome/UserHome/UserHome";
 import Payment from "../pages/Dashboard/Payment/Payment";
 import ManageMedicines from "../pages/Dashboard/Seller/ManageMedicines/ManageMedicines";
 import PaymentHistory from "../pages/Dashboard/Seller/PaymentHistory/PaymentHistory";
