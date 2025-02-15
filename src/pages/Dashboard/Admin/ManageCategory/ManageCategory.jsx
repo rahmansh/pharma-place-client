@@ -48,6 +48,17 @@ const ManageCategory = () => {
         }
     };
 
+    const handleDelete = async (id) => {
+        try {
+            const response = await axiosSecure.delete(`/categories/${id}`); // delete category
+            if (response.data.deletedCount > 0) {
+                toast.success("Category Deleted Successfully");
+            }
+
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     const axiosPublic = useAxiosPublic();
 
@@ -86,7 +97,7 @@ const ManageCategory = () => {
                                     <th>{index + 1}</th>
                                     <td>{category.categoryName}</td>
                                     <td><button onClick={() => handleUpdate(category)}><FaEdit /></button></td>
-                                    <td><button><FaTrash /></button></td>
+                                    <td><button onClick={() => handleDelete(category._id)}><FaTrash /></button></td>
                                 </tr>
                             ))
                         }
