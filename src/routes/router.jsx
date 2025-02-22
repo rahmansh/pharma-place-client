@@ -20,6 +20,7 @@ import AdminHome from "../pages/Dashboard/Admin/AdminHome/AdminHome";
 import ManageCategory from "../pages/Dashboard/Admin/ManageCategory/ManageCategory";
 import AdminPaymentManagement from "../pages/Dashboard/Admin/AdminPaymentManagement/AdminPaymentManagement";
 import AskAdvertisement from "../pages/Dashboard/Seller/AskAdvertisement/AskAdvertisement";
+import SalesReport from "../pages/Dashboard/Admin/SalesReport/SalesReport";
 
 const router = createBrowserRouter([
     {
@@ -95,6 +96,10 @@ const router = createBrowserRouter([
             {
                 path: "managePayment",
                 element: <AdminPaymentManagement />
+            },
+            {
+                path: "salesReport",
+                element: <SalesReport />
             },
             {
                 path: "manageBanner",
