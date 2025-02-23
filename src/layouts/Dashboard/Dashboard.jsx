@@ -67,16 +67,24 @@ const Dashboard = () => {
                             role === 'Seller' &&
                             <>
                                 <li>
-                                    <NavLink to={"/dashboard/sellerHome"}>Seller Home</NavLink>
+                                    <NavLink to={"/dashboard/sellerHome"}>
+                                        <FaHome />
+                                        Seller Home</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to={"/dashboard/manageMedicines"}>Manage Medicines</NavLink>
+                                    <NavLink to={"/dashboard/manageMedicines"}>
+                                        <FaTags />
+                                        Manage Medicines</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to={"/dashboard/seller/paymentHistory"}>Payment History</NavLink>
+                                    <NavLink to={"/dashboard/seller/paymentHistory"}>
+                                        <FaHistory />
+                                        Payment History</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to={"/dashboard/askAdvertisement"}>Ask For Advertisement</NavLink>
+                                    <NavLink to={"/dashboard/askAdvertisement"}>
+                                        <FaBook />
+                                        Ask For Advertisement</NavLink>
                                 </li>
                             </>
                         }
