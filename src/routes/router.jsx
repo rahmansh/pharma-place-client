@@ -21,6 +21,7 @@ import ManageCategory from "../pages/Dashboard/Admin/ManageCategory/ManageCatego
 import AdminPaymentManagement from "../pages/Dashboard/Admin/AdminPaymentManagement/AdminPaymentManagement";
 import AskAdvertisement from "../pages/Dashboard/Seller/AskAdvertisement/AskAdvertisement";
 import SalesReport from "../pages/Dashboard/Admin/SalesReport/SalesReport";
+import SellerHome from "../pages/Dashboard/Seller/SellerHome/SellerHome";
 
 const router = createBrowserRouter([
     {
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
             },
 
             // seller
+            {
+                path: "sellerHome",
+                element: <SellerHome />
+            },
             {
                 path: "manageMedicines",
                 element: <ManageMedicines />

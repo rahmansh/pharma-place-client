@@ -81,7 +81,7 @@ const Navbar = () => {
                                         <li><a>Update Profile</a></li>
                                         {role === "Admin" && <li><Link to={"/dashboard/adminHome"}>Dashboard</Link></li>}
 
-                                        {role === "Seller" && <li><Link to={"/dashboard/manageMedicines"}>Dashboard</Link></li>}
+                                        {role === "Seller" && <li><Link to={"/dashboard/sellerHome"}>Dashboard</Link></li>}
                                         {role === "User" && <li><Link to={"/dashboard/userPaymentHistory"}>Dashboard</Link></li>}
                                         <li><button onClick={handleLogout}>Logout</button></li>
                                     </ul>
