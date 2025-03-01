@@ -23,8 +23,13 @@ const AdminHome = () => {
                         <div className="stat-value">{stats?.users}</div>
                     </div>
                     <div className="stat">
-                        <div className="stat-title">Revenue</div>
-                        <div className="stat-value">{stats?.revenue}</div>
+                        <div className="stat-title">Paid Total</div>
+                        <div className="stat-value">${stats?.paidTotal}</div>
+
+                    </div>
+                    <div className="stat">
+                        <div className="stat-title">Pending Total</div>
+                        <div className="stat-value">${stats?.pendingTotal}</div>
 
                     </div>
                     <div className="stat">
