@@ -6,7 +6,7 @@ const AskAdvertisement = () => {
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
 
-    const { data: medicines } = useQuery({
+    const { data: medicines, refetch } = useQuery({
         queryKey: ['medicines'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/adversitement-status/${user.email}`);
@@ -14,7 +14,16 @@ const AskAdvertisement = () => {
         }
     });
 
-    console.log(medicines)
+    const handleSelect = async (id, value) => {
+        // change status
+        if (value === "requested") {
+            const response = await axiosSecure.patch(`advertisement-request/${id}`);
+            if (response.data.modifiedCount > 0) {
+                refetch();
+            }
+        }
+    }
+
 
 
     return (
@@ -28,21 +37,37 @@ const AskAdvertisement = () => {
                             <th></th>
                             <th>Medicine Name</th>
                             <th>Company</th>
-                            <th>Generic Name</th>
                             <th>Price</th>
                             <th>Slider Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            medicines?.map((medicine, index) => <tr key={medicine._id}>
-                                <th>{index + 1}</th>
-                                <td>{medicine.name}</td>
-                                <td>{medicine.company}</td>
-                                <td>{medicine.genericName}</td>
-                                <td>{medicine.price}</td>
-                                <td>{medicine.sliderStatus !== undefined ? medicine.sliderStatus : "Not Being Used"}</td>
-                            </tr>)
+                            medicines?.map((medicine, index) => {
+                                return (
+                                    <tr key={medicine._id}>
+                                        <th>{index + 1}</th>
+                                        <td>{medicine.name}</td>
+                                        <td>{medicine.company}</td>
+                                        <td>{medicine.price}</td>
+                                        <td>
+                                            <select
+                                                disabled={medicine.sliderStatus === "requested"}
+                                                className="select select-bordered"
+                                                value={medicine.sliderStatus || "not-being-used"}
+                                                onChange={(e) => handleSelect(medicine._id, e.target.value)}
+                                            >
+                                                <option value="not-being-used">Not Being Used</option>
+                                                <option disabled={medicine.sliderStatus === "requested"} value="requested">{medicine.sliderStatus === "requested" ? "Requested" : "Request For Advertisement"}</option>
+                                            </select>
+                                        </td>
+
+                                    </tr>
+                                )
+                            }
+
+
+                            )
                         }
 
                     </tbody>
