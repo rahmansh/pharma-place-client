@@ -58,7 +58,7 @@ const AskAdvertisement = () => {
                                                 onChange={(e) => handleSelect(medicine._id, e.target.value)}
                                             >
                                                 <option value="not-being-used">Not Being Used</option>
-                                                <option disabled={medicine.sliderStatus === "requested"} value="requested">{medicine.sliderStatus === "requested" ? "Requested" : "Request For Advertisement"}</option>
+                                                <option disabled={medicine.sliderStatus} value="requested">{medicine.sliderStatus === "requested" ? "Requested" : medicine.sliderStatus === "accepted" ? "Accepted" : "Request For Advertisement"}</option>
                                             </select>
                                         </td>
 
