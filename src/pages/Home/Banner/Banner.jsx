@@ -8,19 +8,20 @@ import 'swiper/css/navigation';
 // import required modules
 import { Navigation } from 'swiper/modules';
 import { useQuery } from '@tanstack/react-query';
-import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
 
 const Banner = () => {
-    const axiosSecure = useAxiosSecure();
+    const axiosPublic = useAxiosPublic()
 
     const { data: slides } = useQuery({
         queryKey: ['medicines-slider'],
         queryFn: async () => {
-            const res = await axiosSecure.get("/medicines/slider")
+            const res = await axiosPublic.get("/medicines/slider")
             return res.data;
         }
     })
 
+    console.log(slides)
 
     return (
         <div className=''>
