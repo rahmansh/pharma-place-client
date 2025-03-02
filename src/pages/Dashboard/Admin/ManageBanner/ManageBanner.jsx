@@ -79,7 +79,7 @@ const ManageBanner = () => {
                                             <td>
                                                 <select
                                                     onChange={(e) => handleSelectChange(medicine._id, e.target.value)}
-                                                    value={selectedValues[medicine._id] || ""}
+                                                    value={selectedValues[medicine._id] || medicine.sliderStatus || ""}
                                                 >
                                                     <option value="">Select an Option</option>
                                                     <option value="add">Add</option>
