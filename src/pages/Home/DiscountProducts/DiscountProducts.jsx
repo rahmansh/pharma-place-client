@@ -41,7 +41,7 @@ const DiscountProducts = () => {
                     style={{ height: '600px' }}
                 >
                     {
-                        products.map(product => <div key={product._id}>
+                        products?.map(product => <div key={product._id}>
                             <SwiperSlide>
                                 <img src={product.image} alt="" className="w-full h-full object-cover rounded-lg" />
 
