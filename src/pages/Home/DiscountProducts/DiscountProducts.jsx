@@ -1,6 +1,4 @@
 
-import { useRef } from 'react';
-
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 
@@ -16,8 +14,6 @@ import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 
 const DiscountProducts = () => {
-    const progressCircle = useRef(null);
-    const progressContent = useRef(null);
 
     const axiosPublic = useAxiosPublic();
 
@@ -28,16 +24,6 @@ const DiscountProducts = () => {
             return res.data.data;
         }
     })
-
-
-    console.log(products)
-
-
-
-    const onAutoplayTimeLeft = (s, time, progress) => {
-        progressCircle.current.style.setProperty('--progress', 1 - progress);
-        progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
-    };
 
     return (
         <div className="text-center text-3xl mt-12 mb-20">
