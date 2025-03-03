@@ -26,12 +26,12 @@ const SocialLogin = () => {
 
                 axiosPublic.post("/users", userInfo)
                     .then(res => {
-                        console.log(res.data)
+                        // console.log(res.data)
                     })
                 navigate(from, { replace: true })
             }).catch((error) => {
-                console.log("Error Code: ", error.code);
-                console.log("Error Message: ", error.message);
+                // console.log("Error Code: ", error.code);
+                // console.log("Error Message: ", error.message);
             })
     }
 

@@ -9,15 +9,15 @@ const Navbar = () => {
     const { logOut } = useAuth();
 
     const [role] = useAdmin();
-    console.log(role)
+    // console.log(role)
 
 
     const handleLogout = () => {
         logOut().then(() => {
-            console.log("Sign-out successful.")
+            // console.log("Sign-out successful.")
         }).catch((error) => {
-            console.log(error)
-            console.log("An error happened while loggin Out user")
+            // console.log(error)
+            // console.log("An error happened while loggin Out user")
         })
     }
 

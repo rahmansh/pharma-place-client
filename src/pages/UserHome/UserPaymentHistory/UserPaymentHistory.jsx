@@ -14,7 +14,7 @@ const UserPaymentHistory = () => {
         }
     })
 
-    console.log('Payments', payments)
+    // console.log('Payments', payments)
 
     return (
         <div>

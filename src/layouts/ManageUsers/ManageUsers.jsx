@@ -21,7 +21,7 @@ const ManageUsers = () => {
             axiosSecure.patch(`/users/admin/${id}`)
                 .then(res => {
                     if (res.data.modifiedCount > 0) {
-                        console.log("Role Updated")
+                        // console.log("Role Updated")
                     }
                     refetch();
                 })
@@ -30,7 +30,7 @@ const ManageUsers = () => {
             axiosSecure.patch(`/users/seller/${id}`)
                 .then(res => {
                     if (res.data.modifiedCount > 0) {
-                        console.log("Role Updated")
+                        // console.log("Role Updated")
                     }
                     refetch();
                 })
@@ -39,7 +39,7 @@ const ManageUsers = () => {
             axiosSecure.patch(`/user/${id}`)
                 .then(res => {
                     if (res.data.modifiedCount > 0) {
-                        console.log("Role Updated")
+                        // console.log("Role Updated")
                     }
                     refetch();
                 })
@@ -51,7 +51,7 @@ const ManageUsers = () => {
     const handleDelete = (id) => {
         axiosSecure.delete(`/user/${id}`)
             .then(res => {
-                console.log(res)
+                // console.log(res)
                 refetch();
             })
     }

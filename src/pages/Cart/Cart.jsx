@@ -53,18 +53,18 @@ const Cart = () => {
                 }
             })
                 .then((response) => {
-                    console.log("Cart cleared: ", response.data)
+                    // console.log("Cart cleared: ", response.data)
                     refetch();
                 })
                 .catch((err) => {
-                    console.error("Error clearing cart: ", err);
+                    // console.error("Error clearing cart: ", err);
                 })
         }
 
     }
 
     const handleIncrease = (item) => {
-        console.log(item)
+        // console.log(item)
         axiosSecure.get(`/carts?email=${user.email}&medicineName=${item.name}`)
             .then(res => {
                 const existingItem = res.data[0];
@@ -73,16 +73,19 @@ const Cart = () => {
                         orderQuantity: existingItem.orderQuantity + 1,
                     })
                         .then((res) => {
-                            console.log("Quantity updated: ", res.data)
+                            // console.log("Quantity updated: ", res.data)
                             refetch();
                         })
-                        .catch((err) => console.error("Error updating quantity: ", err))
+                        .catch((err) => {
+                            // console.error("Error updating quantity: ", err)
+                        }
+                        )
                 }
             })
             .catch((err) => console.error("Error fetching cart items: ", err))
     }
     const handleDecrease = (item) => {
-        console.log(item)
+        // console.log(item)
         axiosSecure.get(`/carts?email=${user.email}&medicineName=${item.name}`)
             .then(res => {
                 const existingItem = res.data[0];
@@ -91,13 +94,17 @@ const Cart = () => {
                         orderQuantity: existingItem.orderQuantity - 1,
                     })
                         .then((res) => {
-                            console.log("Quantity updated: ", res.data)
+                            // console.log("Quantity updated: ", res.data)
                             refetch();
                         })
-                        .catch((err) => console.error("Error updating quantity: ", err))
+                        .catch((err) => {
+                            // console.error("Error updating quantity: ", err)
+                        })
                 }
             })
-            .catch((err) => console.error("Error fetching cart items: ", err))
+            .catch((err) => {
+                // console.error("Error fetching cart items: ", err)
+            })
     }
 
 

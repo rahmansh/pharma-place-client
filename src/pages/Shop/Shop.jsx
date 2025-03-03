@@ -52,12 +52,14 @@ const Shop = () => {
                                 }
                             })
                             .catch((error) => {
-                                console.error(error)
+                                // console.error(error)
                                 toast.error("Error")
                             })
                     }
                 })
-                .catch((err) => console.error("Error fetching cart items: ", err))
+                .catch((err) => {
+                    // console.error("Error fetching cart items: ", err)
+                })
         } else {
             navigate("/login")
         }
@@ -69,7 +71,7 @@ const Shop = () => {
     const handleInfo = (item) => {
         setSelectedMedicine(item);
         document.getElementById('my_modal_2').showModal();
-        console.log(selectedMedicine)
+        // console.log(selectedMedicine)
     }
 
 

@@ -19,7 +19,7 @@ const AdminPaymentManagement = () => {
         axiosSecure.patch(`/payments/${id}`, { status: value })
             .then(res => {
                 if (res.data.modifiedCount > 0) {
-                    console.log("Status Updated")
+                    // console.log("Status Updated")
                 }
                 refetch();
             })
