@@ -21,7 +21,7 @@ const Banner = () => {
         }
     })
 
-    console.log(slides)
+    // console.log(slides)
 
     return (
         <div className=''>

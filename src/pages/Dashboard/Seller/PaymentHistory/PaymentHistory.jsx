@@ -14,7 +14,7 @@ const PaymentHistory = () => {
         }
     });
 
-    console.log(data)
+    // console.log(data)
     return (
         <div>
             <h1 className="text-3xl text-center">Seller Payment History</h1>
