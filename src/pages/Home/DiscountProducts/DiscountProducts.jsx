@@ -48,8 +48,8 @@ const DiscountProducts = () => {
                                         <img src={product.image} alt="" className="w-full h-full object-cover rounded-lg" />
 
                                         <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex flex-col justify-center items-center text-white p-4">
-                                            <h3 className="text-3xl font-bold">{product.name}</h3>
-                                            <p className="text-lg">Discount: {product.discount}%</p>
+                                            <h3 className="text-xl sm:text-xxl md:text-2xl font-bold">{product.name}</h3>
+                                            <p className="text-lg sm:text-base md:text-lg">Discount: {product.discount}%</p>
                                         </div>
                                     </SwiperSlide>
                                 )
