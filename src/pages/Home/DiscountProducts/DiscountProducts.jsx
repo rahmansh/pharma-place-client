@@ -43,8 +43,8 @@ const DiscountProducts = () => {
                             style={{ height: '600px' }}
                         >
                             {
-                                products?.map(product => <div key={product._id}>
-                                    <SwiperSlide>
+                                products?.map(product =>
+                                    <SwiperSlide key={product._id}>
                                         <img src={product.image} alt="" className="w-full h-full object-cover rounded-lg" />
 
                                         <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex flex-col justify-center items-center text-white p-4">
@@ -52,7 +52,7 @@ const DiscountProducts = () => {
                                             <p className="text-lg">Discount: {product.discount}%</p>
                                         </div>
                                     </SwiperSlide>
-                                </div>)
+                                )
                             }
                         </Swiper>
                     ) : <>
